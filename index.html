@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>همسه ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@700&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  padding:0;
+  text-align:center;
+  background:linear-gradient(to bottom,#ff758c,#ff7eb3);
+  font-family:Arial;
+  overflow:hidden;
+  color:white;
+}
+
+#name{
+  font-family:'Aref Ruqaa', serif;
+  font-size:80px;
+  margin-top:120px;
+  letter-spacing:5px;
+  text-shadow:0 0 20px rgba(255,255,255,0.8);
+  min-height:100px;
+}
+
+.glow{
+  animation:glow 1.5s infinite alternate;
+}
+
+@keyframes glow{
+  from{text-shadow:0 0 10px white;}
+  to{text-shadow:0 0 30px white,0 0 60px pink;}
+}
+
+#counter{
+  font-size:22px;
+  margin:20px;
+}
+
+button{
+  padding:15px 30px;
+  font-size:18px;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  background:#ff2e63;
+  color:white;
+  box-shadow:0 0 25px rgba(255,0,90,0.9);
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.1);
+}
+
+.heart{
+  position:fixed;
+  top:-10px;
+  color:white;
+  font-size:20px;
+  animation:fall linear infinite;
+}
+
+@keyframes fall{
+  to{transform:translateY(100vh);}
+}
+
+.fadeIn{
+  animation:fade 1.5s ease forwards;
+}
+
+@keyframes fade{
+  from{opacity:0; transform:scale(0.8);}
+  to{opacity:1; transform:scale(1);}
+}
+
+.shake{
+  animation:shake 0.5s;
+}
+
+@keyframes shake{
+  0%{transform:translateX(0);}
+  25%{transform:translateX(-5px);}
+  50%{transform:translateX(5px);}
+  75%{transform:translateX(-5px);}
+  100%{transform:translateX(0);}
+}
+
+.explode{
+  position:fixed;
+  font-size:25px;
+  animation:boom 1s ease-out forwards;
+}
+
+@keyframes boom{
+  to{
+    transform:translateY(300px) scale(1.5);
+    opacity:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="name" class="glow"></div>
+
+<h2>336 يوم حب مع هموستي ❤️</h2>
+<div id="counter"></div>
+
+<button onclick="openLove()">افتحي الرسالة يا هموستي 💌</button>
+
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8b4a0b7c1f.mp3?filename=romantic-ambient-piano-110624.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+// ✨ كتابة الاسم حرف حرف
+const text = "همسه";
+let i = 0;
+function typeWriter(){
+  if(i < text.length){
+    document.getElementById("name").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeWriter,300);
+  }
+}
+typeWriter();
+
+
+// ❤️ عداد 336 يوم
+let baseDays = 336;
+let startTime = new Date();
+
+function updateCounter(){
+  const now = new Date();
+  const diff = now - startTime;
+
+  const extraDays = Math.floor(diff/(1000*60*60*24));
+  const hours = Math.floor(diff/(1000*60*60))%24;
+  const minutes = Math.floor(diff/(1000*60))%60;
+  const seconds = Math.floor(diff/1000)%60;
+
+  document.getElementById("counter").innerHTML =
+  `بقالنا ${baseDays + extraDays} يوم ${hours} ساعة ${minutes} دقيقة ${seconds} ثانية حب ❤️`;
+}
+setInterval(updateCounter,1000);
+
+
+// 💣 انفجار قلوب
+function explodeHearts(){
+  for(let i=0;i<40;i++){
+    const heart = document.createElement("div");
+    heart.classList.add("explode");
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.top="40vh";
+    document.body.appendChild(heart);
+    setTimeout(()=>{heart.remove();},1000);
+  }
+}
+
+
+// 💌 المفاجأة الكبرى
+function openLove(){
+
+  document.body.classList.add("shake");
+
+  setTimeout(()=>{
+    explodeHearts();
+
+    document.body.innerHTML = `
+    <div class="fadeIn">
+    <h1 style="margin-top:150px;font-family:'Aref Ruqaa';font-size:70px;">
+    هموستي ❤️
+    </h1>
+    <p style="font-size:22px;padding:20px;line-height:1.8;">
+    336 يوم وأنتي أجمل حاجة حصلتلي ✨<br><br>
+    يا هموستي وجودك حياة وراحة وأمان 🥹<br>
+    كل لحظة معاكي بتعدي وأنا مبسوط ❤️<br><br>
+    وهفضل دايمًا أختارك… كل يوم 💖
+    </p>
+    </div>
+    `;
+
+    document.body.style.background="black";
+
+  },400);
+}
+
+
+// ❤️ قلوب نازلة مستمرة
+function createHeart(){
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML="❤️";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.animationDuration=(Math.random()*3+2)+"s";
+  document.body.appendChild(heart);
+  setTimeout(()=>{heart.remove();},5000);
+}
+setInterval(createHeart,300);
+
+</script>
+
+</body>
+  </html>
